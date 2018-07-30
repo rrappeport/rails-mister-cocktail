@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1><%= @cocktail.name %></h1>
+      <ul class="list-group">
+        <% @cocktail.doses.each do |dose| %>
+        <p><strong><%= dose.ingredient.name %></strong> - <%= dose.description %></p>
+        <% end %>
+      </ul>
+      <%= link_to "Add a new dosage", new_cocktail_dose_path(@cocktail), class: 'btn btn-primary' %><br>
+      <br>
+      <%= link_to "Back to All Cocktails", cocktails_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
