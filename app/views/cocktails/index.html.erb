@@ -1,20 +1,23 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1 class="text-center index-title">All Cocktails</h1>
-      <ul class="list-group">
-        <% @cocktails.each do |cocktail| %>
-        <div class="col-xs-4 cocktail-list">
-          <li class="list-group-item">
-            <%= link_to cocktail.name, cocktail_path(cocktail) %>
-          </li>
+ <div class="header-text text-center"><h1>COCKTAIL MANIA</h1></div>
+ <br>
+
+ <div class="container cards">
+    <div class="row">
+      <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>')">
+          <div class="card-description">
+            <h2><%= cocktail.name %></h2>
+            <ul>
+              <% cocktail.ingredients.limit(4).each do |ingredient| %>
+                <li><%= ingredient.name %></li>
+              <% end %>
+            </ul>
+          </div>
+            <%= link_to '', cocktail_path(cocktail), class: 'card-link' %>
         </div>
-        <% end %>
-      </ul>
-
+      </div>
+      <% end %>
+      <p class="text-center"><%= link_to "Add a new Cocktail", new_cocktail_path, class: 'btn btn-primary all-button' %></p>
+      </div>
     </div>
-    &nbsp;
-    <p class="text-center"><%= link_to "Add a new Cocktail", new_cocktail_path, class: 'btn btn-primary all-button' %></p>
-  </div>
-</div>
-

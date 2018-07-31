@@ -2,11 +2,22 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
       <h1><%= @cocktail.name %></h1>
+      <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
       <ul class="list-group">
         <% @cocktail.doses.each do |dose| %>
         <p><strong><%= dose.ingredient.name %></strong> - <%= dose.description %> <%= link_to "Delete", dose_path(dose), method: :delete %></p>
         <% end %>
       </ul>
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+        <h3 class="text-center">Add an image</h3>
+        <%= simple_form_for @cocktail do |f| %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <br>
+        <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+        <br>
+      </div>
       <%= link_to "Add a new dosage", new_cocktail_dose_path(@cocktail), class: 'btn btn-primary' %><br>
       <br>
       <%= link_to "Back to All Cocktails", cocktails_path, class: "btn btn-default" %>
